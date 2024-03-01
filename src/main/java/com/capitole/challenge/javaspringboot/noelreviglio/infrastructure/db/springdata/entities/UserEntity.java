@@ -25,6 +25,8 @@ public class UserEntity implements UserDetails {
     private String lastname;
     private String email;
     private String password;
+
+    @Column(name = "is_active")
     private boolean isActive;
 
     @Enumerated(EnumType.STRING)

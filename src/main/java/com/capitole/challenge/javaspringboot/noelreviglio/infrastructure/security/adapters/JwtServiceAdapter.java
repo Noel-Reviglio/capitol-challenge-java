@@ -25,25 +25,35 @@ public class JwtServiceAdapter implements JwtService {
     @Value("${application.security.jwt.expiration}")
     private long expiration;
 
-    public String generateToken( UserDetails userDetails ){
+    @Override
+    public String generateToken( Object userDetails ){
         return this.generateToken( new HashMap<>(), userDetails );
     }
 
+    @Override
     public String generateToken( Map<String, Object> extraClaims,
-                                 UserDetails userDetails ){
+                                 Object userDetails ){
+        var user = (UserDetails) userDetails;
         return Jwts.builder()
                 .claims(extraClaims)
-                .subject(userDetails.getUsername())
+                .subject( user.getUsername())
                 .issuedAt( new Date(System.currentTimeMillis()) )
                 .expiration( new Date( System.currentTimeMillis() + this.expiration ) )
                 .signWith( getSigningKey() )
                 .compact();
     }
 
-    public boolean isTokenValid( String token, UserDetails userDetails ){
+    @Override
+    public boolean isTokenValid( String token, Object userDetails ){
+        var user = (UserDetails) userDetails;
         final String username = extractUsername( token );
-        return ( username.equalsIgnoreCase(userDetails.getUsername()) )
+        return ( username.equalsIgnoreCase(user.getUsername()) )
                 && !this.isTokenExpired( token );
+    }
+
+    @Override
+    public String extractUsername(String token) {
+        return extractClaim( token, Claims::getSubject );
     }
 
     private boolean isTokenExpired(String token) {
@@ -54,10 +64,6 @@ public class JwtServiceAdapter implements JwtService {
         final Date expirationToken = extractClaim( token, Claims::getExpiration);
         return LocalDateTime.ofInstant(
                 expirationToken.toInstant(), ZoneId.systemDefault());
-    }
-
-    public String extractUsername(String token) {
-        return extractClaim( token, Claims::getSubject );
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){

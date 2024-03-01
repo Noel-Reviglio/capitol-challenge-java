@@ -12,6 +12,6 @@ public interface UserRepositoryPort {
     Optional<User> findById(Long id);
     List<User> findAll();
     User update(User user);
-    void deleteById(Long id);
+    void delete(Long id);
 
 }

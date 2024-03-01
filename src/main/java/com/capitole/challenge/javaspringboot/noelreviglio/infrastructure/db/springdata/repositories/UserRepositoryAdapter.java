@@ -48,7 +48,7 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public void delete(Long id) {
         var user = this.findById(id).orElseThrow( () -> new UsernameNotFoundException("User not found") );
         user.setActive( false );
         this.save(user);

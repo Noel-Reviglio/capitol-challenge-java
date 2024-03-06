@@ -3,7 +3,7 @@ package com.capitole.challenge.javaspringboot.noelreviglio.infrastructure.db.spr
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table
+@Table( name = "CATEGORY" )
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

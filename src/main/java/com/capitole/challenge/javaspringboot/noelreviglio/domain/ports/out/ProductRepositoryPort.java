@@ -8,10 +8,9 @@ import java.util.Optional;
 public interface ProductRepositoryPort {
 
     Optional<Product> findById( Long id );
-    List<Product> findByName( String name );
     List<Product> findAll();
-    List<Product> findAllEnabled();
+    List<Product> findByEnabled();
     Product save( Product product);
-    Product update( Product product, Long id);
-    void disabled( Long id );
+    Product update( Product product );
+    void disabled( Product product );
 }

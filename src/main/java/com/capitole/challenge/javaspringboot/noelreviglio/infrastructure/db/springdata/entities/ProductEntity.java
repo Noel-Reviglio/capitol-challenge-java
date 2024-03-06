@@ -3,7 +3,7 @@ package com.capitole.challenge.javaspringboot.noelreviglio.infrastructure.db.spr
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table
+@Table( name = "PRODUCT" )
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,5 +18,5 @@ public class ProductEntity {
     private String description;
     @ManyToOne( fetch = FetchType.LAZY )
     private CategoryEntity category;
-
+    private boolean enabled;
 }

@@ -11,7 +11,7 @@ public interface UserRepositoryPort {
     Optional<User> findByEmail(String email);
     Optional<User> findById(Long id);
     List<User> findAll();
-    User update(User user);
-    void delete(Long id);
+    User update( User user );
+    void delete( User user );
 
 }

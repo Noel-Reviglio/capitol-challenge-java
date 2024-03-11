@@ -9,7 +9,8 @@ public interface BrandRepositoryPort {
 
     Optional<Brand> findById( Long id );
     List<Brand> findAll();
+    List<Brand> findByEnabled();
     Brand save( Brand brand );
-    Brand update( Brand brand, Long id );
-    void delete( Long id );
+    Brand update( Brand brand );
+    void delete( Brand brand );
 }

@@ -3,7 +3,7 @@ package com.capitole.challenge.javaspringboot.noelreviglio.infrastructure.db.spr
 import jakarta.persistence.*;
 import lombok.*;
 
-@Table
+@Table( name = "BRAND" )
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,5 +15,5 @@ public class BrandEntity {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
     private String name;
-
+    private boolean enabled;
 }

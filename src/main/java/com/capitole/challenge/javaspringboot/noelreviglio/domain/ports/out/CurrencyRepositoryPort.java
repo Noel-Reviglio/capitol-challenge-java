@@ -9,7 +9,7 @@ public interface CurrencyRepositoryPort {
 
     Optional<Currency> findByCode( String code );
     List<Currency> findAll();
-    List<Currency> findAllEnabled();
+    List<Currency> findByEnabled();
     Currency save(Currency currency);
-    void disabled( String code );
+    void disabled( Currency currency );
 }

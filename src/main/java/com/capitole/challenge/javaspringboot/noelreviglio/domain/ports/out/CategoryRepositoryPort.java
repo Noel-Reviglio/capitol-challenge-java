@@ -10,6 +10,6 @@ public interface CategoryRepositoryPort {
     Optional<Category> findById( Long id );
     List<Category> findAll();
     Category save( Category category );
-    Category update( Category category, Long id );
-    void delete( Long id );
+    Category update( Category category );
+    void delete( Category category );
 }

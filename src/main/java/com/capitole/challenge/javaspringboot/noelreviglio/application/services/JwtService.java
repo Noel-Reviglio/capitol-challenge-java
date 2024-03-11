@@ -1,11 +1,8 @@
 package com.capitole.challenge.javaspringboot.noelreviglio.application.services;
 
-import java.util.Map;
+import com.capitole.challenge.javaspringboot.noelreviglio.application.usecases.jwt.GenerateJwt;
+import com.capitole.challenge.javaspringboot.noelreviglio.application.usecases.jwt.JwtManagement;
 
-public interface JwtService {
 
-    String generateToken( Object userDetails );
-    String generateToken( Map<String, Object> extraClaims, Object userDetails );
-    boolean isTokenValid( String token, Object userDetails );
-    String extractUsername(String token);
+public interface JwtService extends JwtManagement, GenerateJwt {
 }
